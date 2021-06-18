@@ -94,7 +94,7 @@ If the DB can't be detected it will default to the embedded H2 database.
 
 Generic variable names can be used to configure any Database type, defaults may vary depending on the Database.
 
-- `DB_ADDR`: Specify hostname of the database (optional). For postgres only, you can provide a list of hostnames separated by
+- `DB_ADDR`: Specify hostname of the database. For postgres only, you can provide a list of hostnames separated by
 comma to failover alternative host. The hostname can be the host only or pair of host and port, as example host1,host2 or 
 host1:5421,host2:5436 or host1,host2:5000. And keycloak will append DB_PORT (if specify) to the hosts without port, 
 otherwise it will append the default port 5432, again to the address without port only.
@@ -142,7 +142,7 @@ First start a PostgreSQL instance using the PostgreSQL docker image:
 
 Start a Keycloak instance and connect to the PostgreSQL instance:
 
-    docker run --name keycloak --net keycloak-network jboss/keycloak -e DB_USER=keycloak -e DB_PASSWORD=password
+    docker run --name keycloak --net keycloak-network -e DB_USER=keycloak -e DB_ADDR=postgres -e DB_PASSWORD=password jboss/keycloak:latest
 
 If you used a different name for the PostgreSQL instance to `postgres` you need to specify the `DB_ADDR` environment variable.
 
